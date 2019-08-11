@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+click = "*"
+
+[dev-packages]
+tox = "*"
+pytest = "*"
+pytest-cov = "*"
+pylint = "*"
+ipython = "*"
+twine = "*"
+autopep8 = "*"
+
+[requires]
+python_version = "3.7"

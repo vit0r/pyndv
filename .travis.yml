@@ -1,0 +1,32 @@
+language: python
+cache: pip
+env:
+  global:
+  - TRAVIS_TAG=0.1.$TRAVIS_BUILD_NUMBER
+  - COMMIT_MESSAGE=release-version-v$TRAVIS_TAG"
+  - GIT_REPO=pyndv
+  - secure: fsgHqyaI2CoRhhmuNsMSlRJFO8ogJ7rPgw3xuJr5spfAeLeyK7IlErxSDUiU+ZoTwy+yRIcKeqxyVU9s1e8Noqn95CCT1Mz0s+F6g4JVrZ0q+zt6ImV3F0IzfcpJQHPXe86XBTkvRLiHQsE0UnzYL12PmIH5E+TlT/sqWwB37AalrLnOmkT07/Zwy9lJMZ083wCdDI3p+5WzzaDccwvdipeyUY958+PLWvOwsfDp0fkoKR/FYXdpVqV7sBtJ8OlZcvfHwtQh36l1/aKqrrdl5zZz35j/6+0aJwZMZEaSkwrcoLC4tESBT0Tg+NQWpGzt+KhsJ0t8hLwk0U09+NxBBO7YSRAGr4R0TNAFIW+VTJuBP94jjujScMBS5xuMXMOiJV4/kzW66VrPG520ScnCsIYceQ5ZX7iV38nwiMn42URF9Qqkcsc0clNJ6VOvw7uDE55l63ZPip4d6mZOhWt7gdVOAugTLF2MnPi5RqmeKK2OqPU8ooBNflAO1dBIQqMTZW7LTWEkvhz3MRzSan6DMDZBYLHAaZyDDdt3joE6NO2jTKRetBQv3f2dvTTPzZWueT1LpL8e3rWTDnqt3NjXXq8y/9S13dMQGF6NAwiQwjQfFTHbz2f2YqctllmIPAB9rEeg9hjyeC0R2Wg85NR7oq1XnXxKaqIcg5Gi2L/QJnA=
+branches:
+  only:
+  - master
+install: pip install -r requirements-ci.txt
+before_script:
+- make run-bumpversion buildnumber=$TRAVIS_TAG
+script: make run-tox
+before_deploy:
+- git config --local user.name "$GIT_USER_NAME"
+- git config --local user.email "$GIT_USER_EMAIL"
+- git remote rm origin
+- git remote add origin https://$GIT_USER_NAME:$GH_TOKEN@github.com/$GIT_USER_NAME/$GIT_REPO.git
+- git push origin $TRAVIS_BRANCH --tags 2>&1
+deploy:
+- provider: pypi
+  user: "$USER_PYPI"
+  password:
+    secure: s5qO2lrmryc8iIAj6wM8zrqAHg9FxR+dVlsn1X5Xoal/SCLFGWiC9AsIm2VRMzHzt1G3rQIge1mMtiFAz/pdqteidPoG60BmOmCNaSUQUxP8N3ZjDSlWZ45Alp0EYA3SZxLhgp24BA+edlv72KOHy/m4I7PzFcWxnwTATN2VonozWtkrq9URoBqKStdnC/ONvDafkKDa2ZascxTmV6DMJKbnvcpl0ZJ/fYbN+U6bEPl6HsiROmbPKuo5J+fyNhAaO/jQoBVTqrj9tanm+0YkdLZ01cJX3JB40wuwhz0qvQJUem21jfP9DlqfnmEX8wiAdJBPU1cdx7ozFekschtB0q1jw5BL7BcYzZaEEVBKVUKYZZvLO3BbgJamGaCQN3xBC6dznpOP5dU95q+jfX4kUbFfM58eoU/VboPzfnO6HVjoi7ukufxe3ef9tly+cmtlEuVAoZqx2hOD6CiMo4f1NLhhK5gyT8wuvL13fSUoEUeUhNSTKPu628RJcsYh9PcbRYCKDJDRezpFs+D0FwqFTl7MvQ3teGr3neBvh9GU2ul1mR78AcwkjjWZ1fjOfjsoHET9TKhV8eXvkUZkH3WXEP7tyEcX17cD47AxnopcQVvgQduT2wJ5KtoxiJO73+jTsgjgsovp0TSTxb0iwVaNSbuc6vjRDAT16d7CWCcmvGU=
+  distributions: sdist bdist_wheel
+  skip_existing: true
+notifications:
+  email:
+    on_success: never
+    on_failure: always
