@@ -15,5 +15,6 @@
 ## Usage
 
     $ pyndv
-    $ pyndv -f recent
-    $ pyndv -f modified
+    $ pyndv --help
+    $ pyndv -f recent -o output.json
+    $ pyndv -f modified -o output.json

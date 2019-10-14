@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 requests = "*"
 click = "*"
+pytest = "*"
+tox = "*"
 
 [dev-packages]
 tox = "*"

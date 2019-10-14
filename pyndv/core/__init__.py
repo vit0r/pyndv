@@ -74,6 +74,7 @@ class FeedProcessor:
         assert self._output_file, 'output file needed'
         output_file_path = Path(self._output_file)
         if output_file_path.exists():
-            output_file_path = Path(output_file_path.parent, f"{datetime.utcnow().time()}.json")
+            new_file_name = '{}.json'.format(datetime.utcnow().time())
+            output_file_path = Path(output_file_path.parent, new_file_name)
         data_str = json.dumps(self._feed_json, sort_keys=False, indent=2)
         output_file_path.write_text(data_str)
