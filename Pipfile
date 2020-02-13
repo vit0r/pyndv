@@ -6,8 +6,6 @@ name = "pypi"
 [packages]
 requests = "*"
 click = "*"
-pytest = "*"
-tox = "*"
 
 [dev-packages]
 tox = "*"
@@ -17,6 +15,8 @@ pylint = "*"
 ipython = "*"
 twine = "*"
 autopep8 = "*"
+black = "*"
+isort = "*"
 
 [requires]
 python_version = "3.7"
