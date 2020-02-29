@@ -1,5 +1,6 @@
 """Tests for core FeedProcessor
 """
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -34,4 +35,6 @@ def test_feed_processor_invalid_feed_get_default_year_success(year, feed_url_yea
 def test_feed_processor_with_output_file(output_file):
     feed_processor = core.FeedProcessor()
     feed_processor(output=output_file)
-    assert Path(output_file).exists()
+    file_path = Path(output_file)
+    assert file_path.exists()
+    os.remove(str(file_path.resolve()))
