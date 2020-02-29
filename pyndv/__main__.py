@@ -13,8 +13,8 @@ from pyndv import core
 @click.option(
     "--feed",
     "-f",
-    type=click.Choice(["recent", "modified", datetime.now().year], case_sensitive=True),
-    default=datetime.now().year,
+    type=click.Choice(["recent", "modified", str(datetime.now().year)], case_sensitive=True),
+    default=str(datetime.now().year),
     help="Feed name",
     prompt="Selected feed",
 )
