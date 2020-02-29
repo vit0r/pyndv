@@ -22,7 +22,6 @@ from pyndv import core
     "--output",
     "-o",
     type=click.types.STRING,
-    default="pyndv_output.json",
     help="output file name",
     prompt="Output file name: ",
 )
