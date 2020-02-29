@@ -25,6 +25,7 @@ from pyndv import core
     help="output file name",
     prompt="Output file name: ",
 )
+@click.version_option()
 def main(feed, output):
     """main [summary]
     
