@@ -13,20 +13,13 @@ from pyndv import core
 @click.option(
     "--feed",
     "-f",
-    type=click.Option(["recent", "modified", datetime.now().year]),
-    default="recent",
+    type=click.Choice(["recent", "modified", datetime.now().year], case_sensitive=True),
+    default=datetime.now().year,
     help="Feed name",
-    prompt="Selected feed: ",
+    prompt="Selected feed",
 )
-@click.option(
-    "--output",
-    "-o",
-    type=click.types.STRING,
-    help="output file name",
-    prompt="Output file name: ",
-)
-@click.version_option()
-def main(feed, output):
+@click.option("--output", "-o", type=str, help="output file name")
+def main(feed, output=None):
     """main [summary]
     
     [extended_summary]
