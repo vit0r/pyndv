@@ -20,7 +20,7 @@ def feed_url_modified():
     Returns:
         [str]: url for feed modified
     """
-    return "https://nvd.nist.gov/feeds/json/cve/1.0/nvdcve-1.0-modified.json.gz"
+    return "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-modified.json.gz"
 
 
 @pytest.fixture(autouse=True, scope="session")
@@ -32,7 +32,7 @@ def feed_url_recent():
     Returns:
         [str]: url for feed recent
     """
-    return "https://nvd.nist.gov/feeds/json/cve/1.0/nvdcve-1.0-recent.json.gz"
+    return "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-recent.json.gz"
 
 
 @pytest.fixture(autouse=True, scope="session")
@@ -44,6 +44,6 @@ def feed_url_year():
     Returns:
         [str]: url for feed year
     """
-    return "https://nvd.nist.gov/feeds/json/cve/1.0/nvdcve-1.0-{}.json.gz".format(
+    return "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-{}.json.gz".format(
         datetime.now().year
     )
