@@ -13,19 +13,19 @@ import requests
 class FeedProcessor:
     """ Feed Processor class
     Manipulate process to download and produce file/stream json with feed data
-    
+
     Raises:
-        ValueError: Error when download feed .zip
-    
+        ValueError: Error when download feed .gz
+
     Returns:
         [type]: feed type
     """
 
-    _FEED_JSON_URL = "https://nvd.nist.gov/feeds/json/cve/1.0/nvdcve-1.0-{}.json.gz"
+    _FEED_JSON_URL = "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-{}.json.gz"
 
     def _init_(self):
         """_init_ [summary]
-        
+
         [extended_summary]
         """
         self._feed_json = None
@@ -35,9 +35,9 @@ class FeedProcessor:
 
     def __repr__(self):
         """__repr__ [summary]
-        
+
         [extended_summary]
-        
+
         Returns:
             [type]: [description]
         """
@@ -45,7 +45,7 @@ class FeedProcessor:
 
     def __call__(self, *args, **kwargs):
         """__call__ [summary]
-        
+
         [extended_summary]
         """
         self._feed_type = kwargs.get("feed_type", datetime.now().year)
@@ -55,9 +55,9 @@ class FeedProcessor:
     @property
     def feed_json(self):
         """feed_json data feed json
-        
+
         Feed data json was dictionary
-        
+
         Returns:
             [dict]: json dict
         """
@@ -66,9 +66,9 @@ class FeedProcessor:
     @property
     def feed_resource_url(self):
         """feed_resource_url feed url
-        
+
         Store value for resource url
-        
+
         Returns:
             [str]: download url for feed
         """
@@ -80,7 +80,7 @@ class FeedProcessor:
 
         Args:
             process (ProcessExecutor): Process executor
-        
+
         Raises:
             ValueError: When download fails
         """
@@ -94,7 +94,7 @@ class FeedProcessor:
 
     def _download_feed_resource(self, verbose=False):
         """_download_feed_resource download feed process
-        Download feed from nvde site https://nvd.nist.gov/feeds/json/cve/1.0
+        Download feed from nvde site https://nvd.nist.gov/feeds/json/cve/1.1
         """
         self._feed_resource_url = self._FEED_JSON_URL.format(self._feed_type)
         with ProcessPoolExecutor(max_workers=1) as processor:
@@ -111,9 +111,9 @@ class FeedProcessor:
 
     def _write_output_file(self, sort_keys=False, indent=2):
         """_write_output_file create file .json on disk
-        
+
         Create output file json data on disk
-        
+
         Args:
             sort_keys (bool, optional): organize keys on json. Defaults to False.
             indent (int, optional): indent space file json with. Defaults to 2.
