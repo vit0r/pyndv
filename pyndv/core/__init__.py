@@ -1,5 +1,6 @@
 """Download feeds JSON from https://nvd.nist.gov/feeds/json/cve/1.0
 """
+
 import gzip
 import json
 import timeit
@@ -11,7 +12,7 @@ import requests
 
 
 class FeedProcessor:
-    """ Feed Processor class
+    """Feed Processor class
     Manipulate process to download and produce file/stream json with feed data
 
     Raises:
