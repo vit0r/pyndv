@@ -14,9 +14,9 @@ import pytest
 @pytest.fixture(autouse=True, scope="session")
 def feed_url_modified():
     """feed_url_modified return str url for feed modified
-    
+
     Fixture returns url feed modified
-    
+
     Returns:
         [str]: url for feed modified
     """
@@ -26,9 +26,9 @@ def feed_url_modified():
 @pytest.fixture(autouse=True, scope="session")
 def feed_url_recent():
     """feed_url_recent return str url for feed recent
-    
+
     Fixture returns url feed recent
-    
+
     Returns:
         [str]: url for feed recent
     """
@@ -38,9 +38,9 @@ def feed_url_recent():
 @pytest.fixture(autouse=True, scope="session")
 def feed_url_year():
     """feed_url_year return str url for feed year
-    
+
     Fixture returns url feed year
-    
+
     Returns:
         [str]: url for feed year
     """

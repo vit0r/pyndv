@@ -23,13 +23,13 @@ from pyndv import core
 @click.option("--output", "-o", type=str, help="output file name")
 def main(feed, output=None):
     """main [summary]
-    
+
     [extended_summary]
-    
+
     Args:
         feed ([type], optional): [description]. Defaults to str.
         output ([type], optional): [description]. Defaults to File.
-    
+
     Returns:
         [type]: [description]
     """
