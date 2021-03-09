@@ -10,7 +10,7 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/vit0r/pyndv.svg)](https://github.com/vit0r/pyndv/graphs/contributors)
 ## Install
 
-    pip install pyndv
+    $ pip install pyndv
 
 ## Usage
 
