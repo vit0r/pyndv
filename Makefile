@@ -6,6 +6,7 @@ run-tox:
 	find . -name '*.pyc' -delete 
 	find . -name '__pycache__' -type d | xargs rm -fr	
 	rm -fr *.egg *.egg-info/ dist/ build/ docs/_build/
-run-linters:
-	isort -rc pyndv tests
+run-lint:
+	isort pyndv tests
 	black pyndv tests
+	flake8 pyndv tests

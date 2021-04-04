@@ -3,13 +3,13 @@
 
 import gzip
 import json
-import timeit
+import logging
 from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime
 from pathlib import Path
+from time import sleep
 
 import requests
-import logging
 
 FEED_JSON_URL = "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-{}.json.gz"
 
@@ -54,12 +54,15 @@ class FeedProcessor:
                 requests.get, self._feed_resource_url, stream=True
             )
             if self._verbose:
-                logging.info("Download start")
                 while process.running():
-                    print("| \r", end="")
-                    print("/ \r", end="")
-                    print("-- \r", end="")
-                    print("\ \r", end="")
+                    print("Baixando: | \r", end="")
+                    sleep(0.5)
+                    print("Baixando: / \r", end="")
+                    sleep(0.5)
+                    print("Baixando: -- \r", end="")
+                    sleep(0.5)
+                    print("Baixando: \ \r", end="")
+                    sleep(0.5)
                 if process.done():
                     logging.info("Download complete.\r")
             process.add_done_callback(self._process_feed)

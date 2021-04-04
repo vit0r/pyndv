@@ -3,8 +3,9 @@ Lib load modules for pyndv
 """
 
 
-from pyndv import core
 import logging
+
+from pyndv import core
 
 logging.basicConfig(format="%(levelname)s: %(message)s", level=logging.INFO)
 
