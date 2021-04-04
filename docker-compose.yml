@@ -1,0 +1,11 @@
+---
+version: "3"
+
+services:
+  pyndvc:
+    container_name: pyndv
+    build:
+      context: .
+    command: pyndv -o /tmp/outputpyndv.json
+    volumes:
+      - ./exports:/tmp/:rw
