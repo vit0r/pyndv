@@ -20,7 +20,7 @@ from pyndv import core
     help="Feed name",
 )
 @click.option("--output", "-o", type=str, help="output")
-@click.option("--verbose", "-d", help="verbose")
+@click.option("--verbose", "-d", type=bool, help="verbose", default=True)
 @click.help_option()
 def main(feed, output, verbose):
     feed_processor = core.FeedProcessor()

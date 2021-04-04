@@ -6,6 +6,6 @@ services:
     container_name: pyndv
     build:
       context: .
-    command: pyndv -o /tmp/outputpyndv.json
+    command: -o /tmp/pyndv/outputpyndv.json
     volumes:
-      - ./exports:/tmp/:rw
+      - /tmp:/tmp/pyndv
