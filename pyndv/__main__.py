@@ -18,23 +18,13 @@ from pyndv import core
     ),
     default=str(datetime.now().year),
     help="Feed name",
-    prompt="Selected feed",
 )
-@click.option("--output", "-o", type=str, help="output file name")
-def main(feed, output=None):
-    """main [summary]
-
-    [extended_summary]
-
-    Args:
-        feed ([type], optional): [description]. Defaults to str.
-        output ([type], optional): [description]. Defaults to File.
-
-    Returns:
-        [type]: [description]
-    """
+@click.option("--output", "-o", type=str, help="output")
+@click.option("--verbose", "-d", help="verbose")
+@click.help_option()
+def main(feed, output, verbose):
     feed_processor = core.FeedProcessor()
-    feed_processor(feed_type=feed, output=output)
+    feed_processor(feed_type=feed, output=output, verbose=verbose)
     return feed_processor.feed_json
 
 
