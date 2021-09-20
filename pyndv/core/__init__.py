@@ -7,7 +7,6 @@ import logging
 from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime
 from pathlib import Path
-from time import sleep
 
 import requests
 
@@ -54,17 +53,10 @@ class FeedProcessor:
                 requests.get, self._feed_resource_url, stream=True
             )
             if self._verbose:
+                logging.info("Download started.")
                 while process.running():
-                    print("Baixando: | \r", end="")
-                    sleep(0.5)
-                    print("Baixando: / \r", end="")
-                    sleep(0.5)
-                    print("Baixando: -- \r", end="")
-                    sleep(0.5)
-                    print("Baixando: \ \r", end="")
-                    sleep(0.5)
-                if process.done():
-                    logging.info("Download complete.\r")
+                    if process.done():
+                        logging.info("Download complete.")
             process.add_done_callback(self._process_feed)
 
     def _write_output_file(self, sort_keys=False, indent=2):

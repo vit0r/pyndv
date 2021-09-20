@@ -1,8 +1,3 @@
-release: 
-	python setup.py sdist
-	twine check --strict dist/*
-	twine upload dist/*
-	bumpversion release
 tox: 
 	rm -fr .tox .coverage 
 	tox 
@@ -13,3 +8,8 @@ lint:
 	isort pyndv tests
 	black pyndv tests
 	flake8 pyndv tests
+release: 
+	rm -fr *.egg *.egg-info/ dist/ build/ docs/_build/
+	python setup.py sdist
+	twine check --strict dist/*
+	twine upload --repository pyndv dist/*

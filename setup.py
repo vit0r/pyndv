@@ -1,6 +1,7 @@
 """Setup app from setup.cfg
 """
 
+
 from setuptools import find_packages, setup
 
 setup(

@@ -3,9 +3,8 @@ version: "3"
 
 services:
   pyndvc:
-    container_name: pyndv
-    build:
-      context: .
-    command: -o /tmp/pyndv/outputpyndv.json
+    image: vit0r/pyndv
+    container_name: pyndvc
+    command: -o /home/pyndv/data.json
     volumes:
-      - /tmp:/tmp/pyndv
+      - /tmp/data:/home/pyndv

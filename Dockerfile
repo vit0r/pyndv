@@ -1,25 +1,27 @@
 FROM python:3.9-slim
 
+RUN apt update && apt upgrade -y
+
 ENV PYTHONWARNINGS=ignore
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 ARG SUSERNAME=pyndv
-ARG APP_DIR=/tmp/${SUSERNAME}
 
-RUN adduser --system ${SUSERNAME}
+ARG APP_DIR=/home/${SUSERNAME}
 
-RUN apt update && apt upgrade -y
-
-RUN mkdir -p ${APP_DIR}
+RUN adduser -q ${SUSERNAME} --home ${APP_DIR}
 
 WORKDIR ${APP_DIR}
 
 ADD ./setup.py ./setup.py
+
 ADD ./pyndv ./pyndv
 
-RUN python setup.py install
+ENV PATH=${PATH}:${APP_DIR}/.local/bin:${APP_DIR}/.local/lib/python3.9/site-packages
 
 USER ${SUSERNAME}
 
-ENTRYPOINT ["pyndv"]
+RUN python setup.py install --user
+
+CMD ["pyndv"]
