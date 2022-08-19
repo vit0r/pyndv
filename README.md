@@ -17,10 +17,6 @@ $ pip install pyndv
 ## Usage
 
 ```bash
-$ pyndv
 $ pyndv --help
-$ pyndv -f recent -o output.json
-$ pyndv -f modified -o output.json
-$ docker-compose up
-$ docker run --rm --mount type=bind,source=$(pwd),target=/tmp/data vit0r/pyndv
+$ docker run -v /tmp:/tmp -it vit0r/pyndv -o /tmp/nistvul.json -f recent
 ```
